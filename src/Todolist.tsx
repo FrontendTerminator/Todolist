@@ -8,6 +8,7 @@ type PropsType = {
     title: string
     tasks: Array<TaskType>
     filter: FilterValuesType
+    removeTodolist: (id: string) => void
     addTask: (title: string, todoListId: string) => void
     removeTask: (taskId: string, todoListId: string) => void
     changeTodolistTitle: (title: string, todoListId: string) => void
@@ -20,6 +21,10 @@ export function ToDoList(props: PropsType) {
 
     const addTask = (title: string) => {
         props.addTask(title, props.id)
+    }
+
+    const removeTodolist = () => {
+        props.removeTodolist(props.id);
     }
 
     const onAllClickHandler = () => props.changeFilter("all", props.id)
@@ -36,6 +41,7 @@ export function ToDoList(props: PropsType) {
         <div>
             <h3>
                 <EditableSpan title={props.title} changeTitle={changeTodolistTitle}/>
+                <button onClick={removeTodolist}>x</button>
             </h3>
             <AddItemForm addItem={addTask}/>
             <ul>
