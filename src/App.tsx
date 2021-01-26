@@ -12,7 +12,7 @@ export type TaskType = {
     isDone: boolean
 }
 
-type TodolistType = {
+export type TodolistType = {
     id: string
     title: string
     filter: FilterValuesType
@@ -153,11 +153,11 @@ function App() {
                                     <ToDoList
                                         key={tl.id}
                                         id={tl.id}
-                                        filter={tl.filter}
                                         title={tl.title}
-                                        tasks={tasksForTodoList}
                                         addTask={addTask}
+                                        filter={tl.filter}
                                         removeTask={removeTask}
+                                        tasks={tasksForTodoList}
                                         changeFilter={changeFilter}
                                         changeStatus={changeStatus}
                                         removeTodolist={removeTodolist}
