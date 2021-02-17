@@ -29,7 +29,7 @@ export type TodolistReducerActionType = RemoveTodolistActionType | AddTodolistAc
 export function todoListsReducer(state = initialState, action: TodolistReducerActionType) {
     switch (action.type) {
         case 'REMOVE-TODOLIST':
-            return state.filter(tl => tl.id != action.todolistId)
+            return state.filter(tl => tl.id !== action.todolistId)
         case 'ADD-TODOLIST':
             const newTodoList: TodolistType = {
                 id: action.todoListId,
