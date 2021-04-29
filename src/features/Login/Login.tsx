@@ -4,7 +4,7 @@ import {useFormik} from 'formik'
 import {useDispatch, useSelector} from 'react-redux'
 import {loginTC} from './auth-reducer'
 import {AppRootStateType} from '../../app/store'
-import { Redirect } from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 
 export const Login = () => {
     const dispatch = useDispatch()
@@ -36,7 +36,7 @@ export const Login = () => {
     })
 
     if (isLoggedIn) {
-        return <Redirect to={"/"} />
+        return <Redirect to={"/"}/>
     }
 
 
@@ -45,18 +45,13 @@ export const Login = () => {
             <form onSubmit={formik.handleSubmit}>
                 <FormControl>
                     <FormLabel>
-                        <p>
+                        {/*<p>
                             To log in get registered <a href={'https://social-network.samuraijs.com/'}
                                                         target={'_blank'}>here</a>
-                        </p>
-                        <p>
-                            or use common test account credentials:
-                        </p>
-                        <p> Email: free@samuraijs.com
-                        </p>
-                        <p>
-                            Password: free
-                        </p>
+                        </p>*/}
+                        <p style={{color: '#2E3B55'}}>You can use test account credentials</p>
+                        <p><span style={{color: '#2E3B55'}}> Email: </span>free@samuraijs.com</p>
+                        <p><span  style={{color: '#2E3B55'}}>Password: </span>free</p>
                     </FormLabel>
                     <FormGroup>
                         <TextField
@@ -79,7 +74,8 @@ export const Login = () => {
                                 checked={formik.values.rememberMe}
                             />}
                         />
-                        <Button type={'submit'} variant={'contained'} color={'primary'}>Login</Button>
+                        <Button type={'submit'} variant={'contained'}
+                                style={{background: '#2E3B55', color: '#fff'}}>Login</Button>
                     </FormGroup>
                 </FormControl>
             </form>
