@@ -79,6 +79,7 @@ export const Login = () => {
                     </FormGroup>
                 </FormControl>
             </form>
+           {/* <p style={{color: '#2E3B55'}}>Warning: The server may be temporarily overloaded. If you are unable to download the data, then try again.</p>*/}
         </Grid>
     </Grid>
 }
