@@ -3,6 +3,7 @@ import {SetAppErrorActionType, setAppStatusAC, SetAppStatusActionType} from '../
 import {authAPI, LoginParamsType} from '../../api/todolists-api'
 import {handleServerAppError, handleServerNetworkError} from '../../utils/error-utils'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import {AppRootStateType} from "../../app/store";
 
 const initialState = {
     isLoggedIn: false
@@ -53,3 +54,6 @@ export const logoutTC = () => (dispatch: Dispatch) => {
         })
 }
 
+export const authentificationSelector = (state: AppRootStateType) => {
+    return state.auth.isLoggedIn
+}
