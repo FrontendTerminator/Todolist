@@ -1,20 +1,16 @@
 import React, { SyntheticEvent } from "react";
 import Snackbar from "@material-ui/core/Snackbar";
-import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
+import Alert from "@material-ui/lab/Alert";
 import { useDispatch, useSelector } from "react-redux";
-import { AppRootStateType } from "../../store/store";
 import { setAppErrorAC } from "../../store/app-reducer/app-reducer";
-
-const Alert = (props: AlertProps) => {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-};
+import { selectErrod } from "../../store/app-reducer/selectors";
 
 export const ErrorSnackbar = () => {
   const dispatch = useDispatch();
 
-  const error = useSelector<AppRootStateType, string | null>(
-    (state) => state.app.error
-  );
+  const error = useSelector(selectErrod);
+
+  const isOpen = error !== null;
 
   const handleClose = (_: SyntheticEvent, reason?: string) => {
     if (reason === "clickaway") {
@@ -23,11 +19,14 @@ export const ErrorSnackbar = () => {
     dispatch(setAppErrorAC({ error: null }));
   };
 
-  const isOpen = error !== null;
-
   return (
     <Snackbar open={isOpen} autoHideDuration={6000} onClose={handleClose}>
-      <Alert onClose={handleClose} severity="error">
+      <Alert
+        elevation={6}
+        variant="filled"
+        severity="error"
+        onClose={handleClose}
+      >
         {error}
       </Alert>
     </Snackbar>

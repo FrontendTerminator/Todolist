@@ -12,7 +12,7 @@ import {
 import { v1 } from "uuid";
 
 import { RequestStatusType } from "../app-reducer/app-reducer";
-import { TodolistType } from "../../api/types";
+import { Todolist } from "../../api/types";
 
 let todolistId1: string;
 let todolistId2: string;
@@ -52,7 +52,7 @@ test("correct todolist should be removed", () => {
 });
 
 test("correct todolist should be added", () => {
-  let todolist: TodolistType = {
+  let todolist: Todolist = {
     title: "New Todolist",
     id: "any id",
     addedDate: "",

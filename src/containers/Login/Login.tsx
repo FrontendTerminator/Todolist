@@ -11,18 +11,16 @@ import {
 } from "@material-ui/core";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  authentificationSelector,
-  loginTC,
-} from "../../store/auth-reducer/auth-reducer";
 
 import { Redirect } from "react-router-dom";
 import { Form } from "./styles";
+import { selectIsLoggedIn } from "../../store/auth-reducer/selectors";
+import { loginTC } from "../../store/auth-reducer/thunks";
 
 export const Login = () => {
   const dispatch = useDispatch();
 
-  const isLoggedIn = useSelector(authentificationSelector);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const formik = useFormik({
     validate: (values) => {
@@ -46,6 +44,14 @@ export const Login = () => {
       dispatch(loginTC(values));
     },
   });
+
+  const emailError = formik.errors.email ? (
+    <div>{formik.errors.email}</div>
+  ) : null;
+
+  const passwordError = formik.errors.password ? (
+    <div>{formik.errors.password}</div>
+  ) : null;
 
   if (isLoggedIn) {
     return <Redirect to={"/"} />;
@@ -83,16 +89,14 @@ export const Login = () => {
                 margin="normal"
                 {...formik.getFieldProps("email")}
               />
-              {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+              {emailError}
               <TextField
                 type="password"
                 label="Password"
                 margin="normal"
                 {...formik.getFieldProps("password")}
               />
-              {formik.errors.password ? (
-                <div>{formik.errors.password}</div>
-              ) : null}
+              {passwordError}
               <FormControlLabel
                 label={"Remember me"}
                 control={

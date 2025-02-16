@@ -1,52 +1,35 @@
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppRootStateType } from "../../store/store";
 import {
-  addTodolistTC,
   changeTodolistFilterAC,
-  changeTodolistTitleTC,
-  fetchTodolistsTC,
   FilterValuesType,
-  removeTodolistTC,
-  TodolistDomainType,
 } from "../../store/todolist-reducer/todolists-reducer";
-import {
-  addTaskTC,
-  removeTaskTC,
-  TasksStateType,
-  updateTaskTC,
-} from "../../store/tasks-reducer/tasks-reducer";
-
 import { AddItemForm } from "../../components/AddItemForm/AddItemForm";
 import { Todolist } from "./Todolist/Todolist";
 import { Redirect } from "react-router-dom";
-import styled from "styled-components";
 import { TaskStatuses } from "../../api/types";
-
-const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-top: 40px;
-`;
+import { selectIsLoggedIn } from "../../store/auth-reducer/selectors";
+import { selectTasks } from "../../store/tasks-reducer/selectors";
+import { selectTodolists } from "../../store/todolist-reducer/selectors";
+import { Container } from "./styles";
+import {
+  addTaskTC,
+  removeTaskTC,
+  updateTaskTC,
+} from "../../store/tasks-reducer/thunks";
+import {
+  addTodolistTC,
+  changeTodolistTitleTC,
+  fetchTodolistsTC,
+  removeTodolistTC,
+} from "../../store/todolist-reducer/thunks";
 
 export const TodolistsList: React.FC = () => {
-  const todolists = useSelector<AppRootStateType, Array<TodolistDomainType>>(
-    (state) => state.todolists
-  );
-  const tasks = useSelector<AppRootStateType, TasksStateType>(
-    (state) => state.tasks
-  );
-  const isLoggedIn = useSelector<AppRootStateType, boolean>(
-    (state) => state.auth.isLoggedIn
-  );
-
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const thunk = fetchTodolistsTC();
-    dispatch(thunk);
-  }, []);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const todolists = useSelector(selectTodolists);
+  const tasks = useSelector(selectTasks);
 
   const removeTask = useCallback(function (id: string, todolistId: string) {
     const thunk = removeTaskTC(id, todolistId);
@@ -105,6 +88,11 @@ export const TodolistsList: React.FC = () => {
     [dispatch]
   );
 
+  useEffect(() => {
+    const thunk = fetchTodolistsTC();
+    dispatch(thunk);
+  }, []);
+
   if (!isLoggedIn) {
     return <Redirect to={"/login"} />;
   }
@@ -118,6 +106,7 @@ export const TodolistsList: React.FC = () => {
 
           return (
             <Todolist
+              key={tl.id}
               todolist={tl}
               tasks={allTodolistTasks}
               removeTask={removeTask}

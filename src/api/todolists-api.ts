@@ -3,17 +3,17 @@ import {
   GetTasksResponse,
   ResponseType,
   TaskType,
-  TodolistType,
+  Todolist,
   UpdateTaskModelType,
 } from "./types";
 
 export const todolistsAPI = {
   getTodolists() {
-    const promise = apiConfig.get<TodolistType[]>("todo-lists");
+    const promise = apiConfig.get<Todolist[]>("todo-lists");
     return promise;
   },
   createTodolist(title: string) {
-    const promise = apiConfig.post<ResponseType<{ item: TodolistType }>>(
+    const promise = apiConfig.post<ResponseType<{ item: Todolist }>>(
       "todo-lists",
       { title: title }
     );

@@ -41,7 +41,7 @@ export type UpdateTaskModelType = {
   deadline: string;
 };
 
-export type TodolistType = {
+export type Todolist = {
   id: string;
   title: string;
   addedDate: string;

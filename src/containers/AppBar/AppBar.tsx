@@ -6,23 +6,17 @@ import {
   LinearProgress,
   Typography,
 } from "@material-ui/core";
-
 import { useDispatch, useSelector } from "react-redux";
 import { StyledToolbar } from "./styles";
-import { RequestStatusType } from "../../store/app-reducer/app-reducer";
-import { AppRootStateType } from "../../store/store";
-import { logoutTC } from "../../store/auth-reducer/auth-reducer";
+import { selectStatus } from "../../store/app-reducer/selectors";
+import { selectIsLoggedIn } from "../../store/auth-reducer/selectors";
+import { logoutTC } from "../../store/auth-reducer/thunks";
 
 export const AppBar: FC = () => {
   const dispatch = useDispatch();
 
-  const status = useSelector<AppRootStateType, RequestStatusType>(
-    (state) => state.app.status
-  );
-
-  const isLoggedIn = useSelector<AppRootStateType, boolean>(
-    (state) => state.auth.isLoggedIn
-  );
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const status = useSelector(selectStatus);
 
   return (
     <MaterialAppBar position="static" style={{ background: "#2E3B55" }}>
