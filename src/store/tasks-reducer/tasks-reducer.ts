@@ -3,22 +3,10 @@ import {
   removeTodolistAC,
   setTodolistsAC,
 } from "../todolist-reducer/todolists-reducer";
-
-import { Dispatch } from "redux";
-import { AppRootStateType } from "../store";
 import { setAppStatusAC } from "../app-reducer/app-reducer";
-import {
-  handleServerAppError,
-  handleServerNetworkError,
-} from "../../utils/error-utils";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { todolistsAPI } from "../../api/todolists-api";
-import {
-  TaskPriorities,
-  TaskStatuses,
-  TaskType,
-  UpdateTaskModelType,
-} from "../../api/types";
+import { TaskPriorities, TaskStatuses, TaskType } from "../../api/types";
 
 const initialState: TasksStateType = {};
 

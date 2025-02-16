@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent, memo } from "react";
+import React, { FC, ChangeEvent } from "react";
 import { Checkbox, IconButton } from "@material-ui/core";
 import { EditableSpan } from "../../../../../components/EditableSpan/EditableSpan";
 import { Delete } from "@material-ui/icons";
@@ -22,37 +22,41 @@ type TaskProps = {
   removeTask: (taskId: string, todolistId: string) => void;
 };
 
-export const Task: FC<TaskProps> = memo(
-  ({ task, todolistId, changeTaskStatus, changeTaskTitle, removeTask }) => {
-    const { id, status, title } = task;
+export const Task: FC<TaskProps> = ({
+  task,
+  todolistId,
+  changeTaskStatus,
+  changeTaskTitle,
+  removeTask,
+}) => {
+  const { id, status, title } = task;
 
-    const onClickHandler = () => removeTask(id, todolistId);
+  const onClickHandler = () => removeTask(id, todolistId);
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-      let newIsDoneValue = e.currentTarget.checked
-        ? TaskStatuses.Completed
-        : TaskStatuses.New;
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    let newIsDoneValue = e.currentTarget.checked
+      ? TaskStatuses.Completed
+      : TaskStatuses.New;
 
-      changeTaskStatus(id, newIsDoneValue, todolistId);
-    };
+    changeTaskStatus(id, newIsDoneValue, todolistId);
+  };
 
-    const onTitleChangeHandler = (newValue: string) => {
-      changeTaskTitle(id, newValue, todolistId);
-    };
+  const onTitleChangeHandler = (newValue: string) => {
+    changeTaskTitle(id, newValue, todolistId);
+  };
 
-    return (
-      <Wrapper>
-        <Checkbox
-          checked={status === TaskStatuses.Completed}
-          color="primary"
-          onChange={onChangeHandler}
-        />
+  return (
+    <Wrapper>
+      <Checkbox
+        checked={status === TaskStatuses.Completed}
+        color="primary"
+        onChange={onChangeHandler}
+      />
 
-        <EditableSpan value={title} onChange={onTitleChangeHandler} />
-        <IconButton onClick={onClickHandler}>
-          <Delete />
-        </IconButton>
-      </Wrapper>
-    );
-  }
-);
+      <EditableSpan value={title} onChange={onTitleChangeHandler} />
+      <IconButton onClick={onClickHandler}>
+        <Delete />
+      </IconButton>
+    </Wrapper>
+  );
+};

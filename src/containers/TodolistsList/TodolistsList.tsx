@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeTodolistFilterAC,
@@ -31,62 +31,53 @@ export const TodolistsList: React.FC = () => {
   const todolists = useSelector(selectTodolists);
   const tasks = useSelector(selectTasks);
 
-  const removeTask = useCallback(function (id: string, todolistId: string) {
+  const removeTask = (id: string, todolistId: string) => {
     const thunk = removeTaskTC(id, todolistId);
     dispatch(thunk);
-  }, []);
+  };
 
-  const addTask = useCallback(function (title: string, todolistId: string) {
+  const addTask = (title: string, todolistId: string) => {
     const thunk = addTaskTC(title, todolistId);
     dispatch(thunk);
-  }, []);
+  };
 
-  const changeStatus = useCallback(function (
+  const changeStatus = (
     id: string,
     status: TaskStatuses,
     todolistId: string
-  ) {
+  ) => {
     const thunk = updateTaskTC(id, { status }, todolistId);
     dispatch(thunk);
-  },
-  []);
+  };
 
-  const changeTaskTitle = useCallback(function (
+  const changeTaskTitle = (
     id: string,
     newTitle: string,
     todolistId: string
-  ) {
+  ) => {
     const thunk = updateTaskTC(id, { title: newTitle }, todolistId);
     dispatch(thunk);
-  },
-  []);
+  };
 
-  const changeFilter = useCallback(function (
-    value: FilterValuesType,
-    todolistId: string
-  ) {
+  const changeFilter = (value: FilterValuesType, todolistId: string) => {
     const action = changeTodolistFilterAC({ id: todolistId, filter: value });
     dispatch(action);
-  },
-  []);
+  };
 
-  const removeTodolist = useCallback(function (id: string) {
+  const removeTodolist = (id: string) => {
     const thunk = removeTodolistTC(id);
     dispatch(thunk);
-  }, []);
+  };
 
-  const changeTodolistTitle = useCallback(function (id: string, title: string) {
+  const changeTodolistTitle = (id: string, title: string) => {
     const thunk = changeTodolistTitleTC(id, title);
     dispatch(thunk);
-  }, []);
+  };
 
-  const addTodolist = useCallback(
-    (title: string) => {
-      const thunk = addTodolistTC(title);
-      dispatch(thunk);
-    },
-    [dispatch]
-  );
+  const addTodolist = (title: string) => {
+    const thunk = addTodolistTC(title);
+    dispatch(thunk);
+  };
 
   useEffect(() => {
     const thunk = fetchTodolistsTC();
