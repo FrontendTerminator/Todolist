@@ -30,7 +30,7 @@
     "typescript": "^5.7.3",
     "uuid": "^8.3.2"
   },
-  "homepage": "https://FrontendTerminator.github.io/todolist",
+  "homepage": "https://frontendterminator.github.io/Todolist/",
   "scripts": {
     "start": "react-scripts start",
     "start-legacy": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
