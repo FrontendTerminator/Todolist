@@ -36,8 +36,8 @@ export const Login = () => {
       }
     },
     initialValues: {
-      email: "",
-      password: "",
+      email: "mikutishvili.koba@gmail.com",
+      password: "simplePassword1234",
       rememberMe: false,
     },
     onSubmit: (values) => {
@@ -77,10 +77,11 @@ export const Login = () => {
               </p>
               <p>
                 <span style={{ color: "#2E3B55" }}> Email: </span>
-                free@samuraijs.com
+                mikutishvili.koba@gmail.com
               </p>
               <p>
-                <span style={{ color: "#2E3B55" }}>Password: </span>free
+                <span style={{ color: "#2E3B55" }}>Password: </span>
+                simplePassword1234
               </p>
             </FormLabel>
             <FormGroup>
