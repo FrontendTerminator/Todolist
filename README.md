@@ -1,20 +1,34 @@
+# Todo List
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Here (https://frontendterminator.github.io/Todolist/) you can see the deployed project.
+You can see the deployed project [here](https://frontendterminator.github.io/Todolist/).
 
-If you want to run it localy. You need to install Yarn (https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable).
+## How to Run Locally
 
-## Steps to run
+To run the project locally, you need to install [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable).
 
-In the project directory run this command to install node modules:
+### Steps to Run
 
-### `yarn`
+In the project directory, run the following command to install dependencies:
 
-In the project directory run this command to run app:
+```sh
+yarn
+```
 
-### `yarn start` or `yarn start-legacy`
+Then, run the following command to start the app:
 
-- use `yarn start-legacy` if you have conflict between node.js versions
+```sh
+yarn start
+```
 
-Runs the app in the development mode.<br />
+or
+
+```sh
+yarn start-legacy
+```
+
+> Use `yarn start-legacy` if you encounter a Node.js version conflict.
+
+The app will run in development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
